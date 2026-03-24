@@ -3,7 +3,7 @@ package back.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class Student {
+public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,11 +11,9 @@ public class Student {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-    private String password;
-    @Column(nullable = false)
-    private String rollno;
-    @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
+    private String password;
 
     // ===== GETTERS & SETTERS =====
 
@@ -31,27 +29,19 @@ public class Student {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRollno() {
-        return rollno;
-    }
-
-    public void setRollno(String rollno) {
-        this.rollno = rollno;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

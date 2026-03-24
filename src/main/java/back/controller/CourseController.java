@@ -4,22 +4,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import back.entity.Course;
-import back.repository.CourseRepository;
+import back.service.CourseService;
 
 @RestController
 @RequestMapping("/course")
 public class CourseController {
 
     @Autowired
-    private CourseRepository courseRepo;
+    private CourseService courseService;
 
+    // ADD COURSE
     @PostMapping("/add")
     public Course addCourse(@RequestBody Course course) {
-        return courseRepo.save(course);
+        return courseService.addCourse(course);
     }
 
+    // GET ALL COURSES
     @GetMapping("/all")
     public Object getAllCourses() {
-        return courseRepo.findAll();
+        return courseService.getAllCourses();
+    }
+
+    // DELETE COURSE
+    @DeleteMapping("/delete/{id}")
+    public String deleteCourse(@PathVariable Long id) {
+        return courseService.deleteCourse(id);
     }
 }

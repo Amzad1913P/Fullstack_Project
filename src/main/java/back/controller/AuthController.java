@@ -14,8 +14,15 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
+    // STUDENT LOGIN
     @PostMapping("/student/login")
-    public LoginResponse login(@RequestBody LoginRequest request) {
+    public LoginResponse studentLogin(@RequestBody LoginRequest request) {
         return authService.loginStudent(request);
+    }
+
+    // ADMIN LOGIN
+    @PostMapping("/admin/login")
+    public LoginResponse adminLogin(@RequestBody LoginRequest request) {
+        return authService.loginAdmin(request);
     }
 }

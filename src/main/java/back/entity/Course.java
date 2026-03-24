@@ -10,15 +10,22 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String facultyName;
 
+    @Column(nullable = false)
     private int credits;
 
+    @Column(nullable = false)
     private LocalTime startTime;
+
+    @Column(nullable = false)
     private LocalTime endTime;
 
-    @Column(length = 6)
+    @Column(nullable = false, length = 6)
     private String days;
 
     // ===== GETTERS & SETTERS =====

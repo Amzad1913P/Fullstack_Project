@@ -76,4 +76,20 @@ public class EnrollmentService {
 
         return enrollmentRepo.findByStudent(student);
     }
+    public String deleteCourse(Long courseId) {
+
+        Course course = courseRepo.findById(courseId).orElse(null);
+
+        if (course == null) {
+            return "Course not found";
+        }
+
+        // 🔥 STEP 1: delete all enrollments related to this course
+        enrollmentRepo.deleteByCourse(course);
+
+        // 🔥 STEP 2: delete course
+        courseRepo.deleteById(courseId);
+
+        return "Course and related enrollments deleted successfully";
+    }
 }
