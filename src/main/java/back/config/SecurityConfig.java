@@ -31,7 +31,7 @@ public class SecurityConfig {
     @Autowired
     private OAuth2SuccessHandler oauth2SuccessHandler;
 
-    // ✅ Dynamic frontend URL
+    // ✅ Dynamic frontend URL from Render env
     @Value("${frontend.url}")
     private String frontendUrl;
 
@@ -39,22 +39,49 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
+
+            // ✅ Enable CORS
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers("/", "/index.html", "/assets/**", "/auth/**", "/login/oauth2/**").permitAll()
+
+                // ✅ Public endpoints
+                .requestMatchers(
+                        "/", 
+                        "/index.html", 
+                        "/assets/**", 
+                        "/auth/**", 
+                        "/login/oauth2/**",
+                        "/oauth2/**"
+                ).permitAll()
+
                 .requestMatchers("/student/add").permitAll()
+
+                // ✅ (Optional Swagger)
+                .requestMatchers(
+                        "/v3/api-docs/**",
+                        "/swagger-ui/**",
+                        "/swagger-ui.html"
+                ).permitAll()
+
                 .anyRequest().authenticated()
             )
+
+            // ✅ Google OAuth
             .oauth2Login(oauth2 -> oauth2
                 .userInfoEndpoint(userInfo -> userInfo
                     .userService(customOAuth2UserService)
                 )
                 .successHandler(oauth2SuccessHandler)
             )
+
+            // ✅ Session policy (required for OAuth)
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
             )
+
+            // ✅ JWT filter
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
@@ -64,21 +91,28 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // ✅ ONLY frontend URL allowed
-        configuration.setAllowedOrigins(Arrays.asList(frontendUrl));
+        // ✅ Allow frontend (Render) + localhost (dev)
+        configuration.setAllowedOriginPatterns(Arrays.asList(
+                frontendUrl,                // Render frontend
+                "http://localhost:5173"    // Local dev
+        ));
 
+        // ✅ Methods
         configuration.setAllowedMethods(Arrays.asList(
                 "GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"
         ));
 
+        // ✅ Headers
         configuration.setAllowedHeaders(Arrays.asList(
                 "Authorization", "Content-Type"
         ));
 
+        // ✅ Allow cookies / auth
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
+
         return source;
     }
 }
