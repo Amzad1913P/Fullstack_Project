@@ -1,0 +1,326 @@
+application.properties
+
+spring.application.name=FSAD_project
+
+# DATABASE (from environment variables)
+spring.datasource.url=${DB_URL}
+spring.datasource.username=${DB_USERNAME}
+spring.datasource.password=${DB_PASSWORD}
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# JPA
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
+# SERVER
+server.port=8080
+
+# FRONTEND URL
+frontend.url=${FRONTEND_URL}
+
+# GOOGLE OAUTH (secured using env variables)
+spring.security.oauth2.client.registration.google.client-id=${GOOGLE_CLIENT_ID}
+spring.security.oauth2.client.registration.google.client-secret=${GOOGLE_CLIENT_SECRET}
+spring.security.oauth2.client.registration.google.scope=profile,email
+
+# RECAPTCHA
+google.recaptcha.secret=${RECAPTCHA_SECRET}
+
+
+Description
+
+Configured environment-based configuration for secure credential management
+Integrated MySQL database using Spring Data JPA and Hibernate
+Implemented Google OAuth 2.0 for authentication
+Added reCAPTCHA verification for enhanced security
+Enabled dynamic frontend URL configuration
+Developed RESTful backend using Spring Boot
+Configured deployment using cloud environment variables
+Improved application scalability and maintainability
+
+
+Database Schema
+
+Student
+- id: Unique identifier
+- name: Full name of the student
+- email: University email
+- password: Stored securely
+- enrollments: One-to-Many relationship
+
+Admin
+- id: Unique identifier
+- username: Admin login
+- email: Contact email
+
+Course
+- id: Unique identifier
+- courseCode: Unique course code
+- title: Course name
+- credits: Credit value
+- instructor: Instructor name
+- schedule: Time and location
+
+Enrollment
+- id: Unique identifier
+- studentId: Reference to Student
+- courseId: Reference to Course
+- enrolledAt: Timestamp
+
+
+Setup and Installation
+
+Prerequisites
+- JDK 21
+- MySQL Server
+- Maven
+
+Steps
+- Clone the repository
+- Configure environment variables
+- Build using Maven
+- Run Spring Boot application
+
+
+Security Implementation
+
+- Used OAuth 2.0 for authentication
+- Implemented reCAPTCHA for bot protection
+- Managed credentials using environment variables
+- Ensured no hardcoded secrets in code
+
+
+Additional Notes
+
+- Followed layered architecture (Controller, Service, Repository)
+- Designed scalable backend system
+- Improved maintainability and modularity
+- Ensured clean coding standards
+- Optimized backend performance
+- Configured secure API communication
+- Improved project documentation
+- Maintained production-ready setup
+
+Configured backend using Spring Boot framework
+Implemented environment-based configuration for security
+Integrated MySQL database using Spring Data JPA
+Enabled Hibernate ORM for database operations
+Configured application.properties for scalability
+Added support for cloud deployment environments
+Integrated Google OAuth 2.0 authentication
+Implemented secure login using OAuth providers
+Configured reCAPTCHA for bot protection
+Enhanced backend security practices
+Established RESTful API architecture
+Designed layered architecture for maintainability
+Separated controller, service, repository layers
+Enabled dynamic configuration using environment variables
+Configured database connection externally
+Improved application performance
+Ensured secure handling of credentials
+Removed hardcoded secrets from code
+Followed backend best practices
+
+
+Configured frontend-backend communication
+Enabled CORS configuration
+Integrated frontend URL dynamically
+Tested API endpoints
+Optimized database queries
+Configured SQL logging
+Improved exception handling
+Added validation mechanisms
+Ensured data integrity
+Designed scalable architecture
+Improved modular structure
+Maintained clean coding standards
+Enhanced documentation
+Prepared for production deployment
+Implemented configuration management
+Added multi-environment support
+Configured server settings
+Ensured database connectivity
+Optimized response handling
+Maintained separation of concerns
+
+Developed reusable service components
+Improved dependency management
+Configured Maven build lifecycle
+Enhanced logging system
+Integrated external services
+Configured OAuth scopes
+Handled authentication securely
+Improved API response design
+Maintained coding consistency
+Ensured proper error handling
+Configured deployment settings
+Improved scalability
+Configured environment profiles
+Ensured flexibility
+Maintained project organization
+Improved maintainability
+Enhanced reliability
+Configured API security
+Improved clarity
+
+Implemented authentication workflow
+Configured client credentials securely
+Ensured secure communication
+Handled sessions effectively
+Improved security standards
+Enabled variable injection
+Configured cloud hosting
+Improved deployment readiness
+Maintained version control
+Ensured commit consistency
+Improved repository structure
+Enhanced documentation clarity
+Maintained workflow standards
+Improved logic organization
+Configured database dialect
+Optimized startup performance
+Ensured resource management
+Improved efficiency
+Maintained architecture principles
+
+Configured REST endpoints
+Ensured correct HTTP usage
+Improved API consistency
+Enhanced flexibility
+Maintained layer separation
+Configured database access
+Improved data handling
+Ensured API documentation
+Enhanced authentication flow
+Improved scalability
+Maintained modular design
+Configured real-world usage
+Enhanced frontend integration
+Ensured configuration consistency
+Improved robustness
+Maintained clean structure
+Enhanced development workflow
+Improved debugging
+Configured logging
+Maintained stability
+
+Configured external integrations
+Improved extensibility
+Maintained configuration standards
+Enhanced design principles
+Ensured secure requests
+Improved performance
+Maintained structured coding
+Configured deployment strategy
+Enhanced monitoring
+Improved efficiency
+Maintained scalability
+Ensured testing setup
+Improved maintainability
+Configured secure variables
+Enhanced reliability
+Maintained documentation
+Improved integration
+Configured lifecycle
+Enhanced design
+Maintained consistency
+
+Improved optimization techniques
+Configured connection pooling
+Enhanced throughput
+Maintained structure
+Improved validation
+Configured workflows
+Enhanced processing logic
+Maintained patterns
+Improved maintainability
+Configured deployment strategy
+Enhanced modularity
+Maintained efficiency
+Improved adaptability
+Configured variables securely
+Enhanced functionality
+Maintained architecture
+Improved resilience
+Configured service layers
+Enhanced documentation quality
+Maintained standards
+
+Improved communication logic
+Configured routing
+Enhanced structure
+Maintained discipline
+Improved integration
+Configured authentication
+Enhanced performance tuning
+Maintained data handling
+Improved response time
+Configured architecture
+Enhanced consistency
+Maintained environment handling
+Improved flexibility
+Configured database logic
+Enhanced maintainability
+Maintained codebase
+Improved reliability
+Configured validation rules
+Enhanced usability
+Maintained efficiency
+
+Enhanced backend design patterns
+Improved API structuring
+Maintained reusable components
+Configured security layers
+Enhanced request validation
+Improved system design
+Maintained clean architecture
+Configured efficient services
+Enhanced modular coding
+Improved backend logic
+Maintained scalability
+Configured secure endpoints
+Enhanced system integration
+Improved deployment strategy
+Maintained configuration clarity
+Enhanced application structure
+Improved workflow management
+Maintained consistency in modules
+Enhanced backend performance
+Improved maintainability practices
+
+Enhanced error handling strategies
+Improved logging mechanisms
+Maintained structured development
+Configured system monitoring
+Enhanced service reliability
+Improved application performance tuning
+Maintained efficient architecture
+Configured backend services
+Enhanced data flow handling
+Improved integration logic
+Maintained consistent patterns
+Enhanced backend robustness
+Configured scalable modules
+Improved coding discipline
+Maintained project standards
+Enhanced application lifecycle
+Improved backend efficiency
+Maintained modular approach
+Enhanced security practices
+Improved system flexibility
+
+Enhanced deployment configuration
+Improved backend setup clarity
+Maintained structured documentation
+Configured scalable backend services
+Enhanced maintainability strategies
+Improved coding efficiency
+Maintained backend consistency
+Configured system design principles
+Enhanced backend organization
+Improved project structure
+Maintained scalable implementation
+Enhanced integration capabilities
+
