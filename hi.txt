@@ -1,0 +1,106 @@
+application.properties
+
+spring.application.name=FSAD_project
+
+# DATABASE (from environment variables)
+spring.datasource.url=${DB_URL}
+spring.datasource.username=${DB_USERNAME}
+spring.datasource.password=${DB_PASSWORD}
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# JPA
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
+# SERVER
+server.port=8080
+
+# FRONTEND URL
+frontend.url=${FRONTEND_URL}
+
+# GOOGLE OAUTH (secured using env variables)
+spring.security.oauth2.client.registration.google.client-id=${GOOGLE_CLIENT_ID}
+spring.security.oauth2.client.registration.google.client-secret=${GOOGLE_CLIENT_SECRET}
+spring.security.oauth2.client.registration.google.scope=profile,email
+
+# RECAPTCHA
+google.recaptcha.secret=${RECAPTCHA_SECRET}
+
+
+Description
+
+Configured environment-based configuration for secure credential management
+Integrated MySQL database using Spring Data JPA and Hibernate
+Implemented Google OAuth 2.0 for authentication
+Added reCAPTCHA verification for enhanced security
+Enabled dynamic frontend URL configuration
+Developed RESTful backend using Spring Boot
+Configured deployment using cloud environment variables
+Improved application scalability and maintainability
+
+
+Database Schema
+
+Student
+- id: Unique identifier
+- name: Full name of the student
+- email: University email
+- password: Stored securely
+- enrollments: One-to-Many relationship
+
+Admin
+- id: Unique identifier
+- username: Admin login
+- email: Contact email
+
+Course
+- id: Unique identifier
+- courseCode: Unique course code
+- title: Course name
+- credits: Credit value
+- instructor: Instructor name
+- schedule: Time and location
+
+Enrollment
+- id: Unique identifier
+- studentId: Reference to Student
+- courseId: Reference to Course
+- enrolledAt: Timestamp
+
+
+Setup and Installation
+
+Prerequisites
+- JDK 21
+- MySQL Server
+- Maven
+
+Steps
+- Clone the repository
+- Configure environment variables
+- Build using Maven
+- Run Spring Boot application
+
+
+Security Implementation
+
+- Used OAuth 2.0 for authentication
+- Implemented reCAPTCHA for bot protection
+- Managed credentials using environment variables
+- Ensured no hardcoded secrets in code
+
+
+Additional Notes
+
+- Followed layered architecture (Controller, Service, Repository)
+- Designed scalable backend system
+- Improved maintainability and modularity
+- Ensured clean coding standards
+- Optimized backend performance
+- Configured secure API communication
+- Improved project documentation
+- Maintained production-ready setup
+
+
